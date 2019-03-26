@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplication1.Repositories;
 
 namespace WebApplication1
 {
@@ -33,6 +34,10 @@ namespace WebApplication1
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //配置DbContext注入
+            services.AddTransient<TutorialDbContext>();
+            //配置Repository注入
+            services.AddTransient<TutorialRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -29,5 +29,15 @@ namespace WebApplication1
         {
             return Content($"Action params mapping test by ken.io, id:{id}");
         }
+
+        public IActionResult RedirectToActionTest()
+        {
+            return RedirectToAction("jsontest");
+        }
+
+        public IActionResult RedirectToRouteTest()
+        {
+            return RedirectToRoute("Default", new { Controller = "home", Action = "index" });
+        }
     }
 }

@@ -112,7 +112,17 @@ namespace WebApplication1.Controllers
         {
             return value;
         }
-        
+
+        public IActionResult GetPerson(Person person)
+        {
+            return Json(new { Message = "Action params mapping test by ken.io", Data = person });
+        }
+
+        public IActionResult GetPersonJson([FromBody]Person person)
+        {
+            return Json(new { Message = "Action params mapping test by ken.io", Data = person });
+        }
+
 
         public string Welcome(string name, int numTimes = 1)
         {
@@ -159,5 +169,12 @@ namespace WebApplication1.Controllers
                 return View();
             }
         }
+    }
+
+    public class Person
+    {
+        public string Name { get; set; }
+
+        public int Age { get; set; }
     }
 }
