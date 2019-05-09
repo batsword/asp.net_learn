@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "_LayoutPF";
+    ViewBag.Title = "概率";
+}
+
+<html>
+
+<head>
+    <style type="text/css">
+
+        /*主面板样式*/
+            #container {
+            width:980px;
+            margin:0px auto;/*主面板DIV居中*/
+            }
+            /*顶部面板样式*/
+            #header {
+            width:100%;
+            height:150px;
+            border:1px #F00 solid;
+            }
+            /*中间部分面板样式*/
+            #main {
+            width:100%;
+            height:600px;
+            border:1px #F00 solid;
+            }
+            /*底部面板样式*/
+            #footer {
+            width:100%;
+            height:100px;
+            border:1px #F00 solid;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="Container">
+        <div id="header">顶部（header）</div>
+
+        <form action="/PF/GetJiaoQiu" method="post">
+            <div id="main">
+                <div>
+                    <input type="text" name="DuiMing" id="DuiMing" placeholder="队名:(可不填)" />
+                </div>
+                <div>
+                    <label><input name="Half" checked type="radio" value="" />上半</label>
+                    <label><input name="Half" type="radio" value="" />下半</label>
+                </div>
+                <div>
+                    <p>当前时间:(分钟)</p>
+                    <input type="text" value="37" name="Time" id="Time" placeholder="当前时间:(分钟)" />
+                </div>
+                <div>
+                    <p>初盘角球:(个)</p>
+                    <input type="text" value="9" name="ChuPanJiao" id="ChuPanJiao" placeholder="初盘角球:(个)" />
+                </div>
+                <div>
+                    <p>当前角球:(个)</p>
+                    <input type="text" value="2" name="DangQianJiao" id="DangQianJiao" placeholder="当前角球:(个)" />
+                </div>
+                <div>
+                    <p>射正:(两队共)</p>
+                    <input type="text" value="5" name="SheZheng" id="SheZheng" placeholder="射正:(两队共)" />
+                </div>
+                <div>
+                    <p>射偏:(两队共)</p>
+                    <input type="text" value="5" name="ShePian" id="ShePian" placeholder="射偏:(两队共)" />
+                </div>
+                <div>
+                    <p>初盘让球:(个)</p>
+                    <input type="text" value="-1" name="ChuPanRang" id="ChuPanRang" placeholder="初盘让球:(个)" />
+                </div>
+                <div>
+                    <p>当前让球:(个)</p>
+                    <input type="text" value="-1.25" name="DangQianRang" id="DangQianRang" placeholder="当前让球:(个)" />
+                </div>
+
+                <div>
+                    <input type="submit" id="send" value="预测" />
+                </div>
+
+            </div>
+        </form>
+
+
+        <div id="footer">底部（footer）</div>
+    </div>
+
+</body>
+</html>

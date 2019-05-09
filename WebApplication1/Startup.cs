@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApplication1.Repositories;
+using WebApplication1.SignalR;
 
 namespace WebApplication1
 {
@@ -32,6 +33,7 @@ namespace WebApplication1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSignalR();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //配置DbContext注入
@@ -57,6 +59,11 @@ namespace WebApplication1
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSignalR(route =>
+            {
+                route.MapHub<MyChatHub>("/myChathub");
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -68,6 +75,8 @@ namespace WebApplication1
                     template: "art/{action}",
                     defaults: new { controller = "ActionResultTest" }
                 );
+
+
             });
         }
     }
