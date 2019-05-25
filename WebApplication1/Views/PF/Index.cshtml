@@ -6,31 +6,115 @@
 <html>
 
 <head>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript">
+        
+        function FormAjax(){
+
+            $.ajax({
+
+                url: "/PF/RegisterResult",
+
+                data: {
+
+                    DuiMing: $("#DuiMing").val(),
+                    Time: "Time",
+                    Half:$("input[name='Half']:checked").val()
+                },
+
+                type: "post",
+
+                dataType:"text",
+
+                success: function (response) {
+
+                    alert(response);
+
+                }
+
+            });
+
+        }
+
+        //$(document).ready(function(){
+        //  $("#b01").click(function(){
+        //    alert("result: ");
+        //  });
+        //});
+
+        $(document).ready(function(){
+            $("#b01").click(function () {
+
+                var datas = {
+                    DuiMing:"DuiMing",
+                    Time: "Time"
+                    
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/PF/GetJiaoQiuJson",
+                    data:JSON.stringify(datas), 
+                    //data:datas.toJSONString(),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                         alert("result: " + result );
+                    }
+                });
+            });
+         });
+                //var data = {
+                //    "DuiMing":"DuiMing",
+                //    "Time":"Time"
+                //};
+
+                //$.ajax({
+                //    type: "POST",
+                //    url: "/PF/GetJiaoQiuJson",
+                //    data: data,
+                //    contentType: "application/json; charset=utf-8",
+                //    dataType: "json",
+                //    success: function (result) {
+                //         alert("result: " + result );
+                //    }
+
+                //$.post("/PF/GetJiaoQiuJson",
+                //{
+                //  DuiMing:"DuiMing",
+                //  Time:"Time"
+                //},
+                //function(data,status){
+                //  alert("Data: " + data + "\nStatus: " + status);
+                //});
+            
+    </script>
+
     <style type="text/css">
 
         /*主面板样式*/
-            #container {
-            width:980px;
-            margin:0px auto;/*主面板DIV居中*/
-            }
-            /*顶部面板样式*/
-            #header {
-            width:100%;
-            height:150px;
-            border:1px #F00 solid;
-            }
-            /*中间部分面板样式*/
-            #main {
-            width:100%;
-            height:600px;
-            border:1px #F00 solid;
-            }
-            /*底部面板样式*/
-            #footer {
-            width:100%;
-            height:100px;
-            border:1px #F00 solid;
-            }
+        #container {
+            width: 980px;
+            margin: 0px auto; /*主面板DIV居中*/
+        }
+        /*顶部面板样式*/
+        #header {
+            width: 100%;
+            height: 150px;
+            border: 1px #F00 solid;
+        }
+        /*中间部分面板样式*/
+        #main {
+            width: 100%;
+            height: 600px;
+            border: 1px #F00 solid;
+        }
+        /*底部面板样式*/
+        #footer {
+            width: 100%;
+            height: 100px;
+            border: 1px #F00 solid;
+        }
     </style>
 </head>
 <body>
@@ -44,8 +128,8 @@
                     <input type="text" name="DuiMing" id="DuiMing" placeholder="队名:(可不填)" />
                 </div>
                 <div>
-                    <label><input name="Half" checked type="radio" value="" />上半</label>
-                    <label><input name="Half" type="radio" value="" />下半</label>
+                    <label><input name="Half" checked type="radio"   value="up" />上半</label>
+                    <label><input name="Half" type="radio"   value="down" />下半</label>
                 </div>
                 <div>
                     <p>当前时间:(分钟)</p>
@@ -77,14 +161,19 @@
                 </div>
 
                 <div>
-                    <input type="submit" id="send" value="预测" />
+                    <button id="send" type="submit">预测</button>
+                    @*<input type="submit" id="send" value="预测" />*@
                 </div>
 
             </div>
         </form>
 
 
-        <div id="footer">底部（footer）</div>
+        <div id="footer">
+            <div id="myDiv"><h2>通过 AJAX 改变文本</h2></div>
+            <button id="b01" type="button">改变内容</button>
+            <input id="ajax_btn" onClick="FormAjax();" type="submit" value="ajax提交">
+        </div>
     </div>
 
 </body>

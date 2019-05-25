@@ -21,6 +21,25 @@ namespace WebApplication1.Controllers
         public IActionResult GetJiaoQiu(JiaoQiu jq)
         {
             string DuiMing = jq.DuiMing;
+            //string Half = jq.Half;
+            string Time = jq.Time;
+            //string ChuPanJiao = jq.ChuPanJiao;
+            //string DangQianJiao = jq.DangQianJiao;
+            //string SheZheng = jq.SheZheng;
+            //string ShePian = jq.ShePian;
+            //string ChuPanRang = jq.ChuPanRang;
+            //string DangQianRang = jq.DangQianRang;
+
+            ViewBag.Result = DuiMing;
+
+            return Content(DuiMing + "*************" );
+
+        }
+
+        [HttpPost]
+        public IActionResult GetJiaoQiuJson([FromBody] JiaoQiu jq)
+        {
+            string DuiMing = jq.DuiMing;
             string Half = jq.Half;
             string Time = jq.Time;
             string ChuPanJiao = jq.ChuPanJiao;
@@ -30,11 +49,29 @@ namespace WebApplication1.Controllers
             string ChuPanRang = jq.ChuPanRang;
             string DangQianRang = jq.DangQianRang;
 
+            ViewBag.Result = DuiMing;
 
-
-            return Content(DuiMing + "*************" + Half);
+            return Content(DuiMing + "*************");
 
         }
+
+
+        public string RegisterResult()
+
+        {
+
+            JiaoQiu jq = new JiaoQiu();
+
+            string DuiMing = Request.Form["DuiMing"];
+
+            string Time = Request.Form["Time"];
+
+            string Half = Request.Form["Half"];
+
+            return $"DuiMing:{DuiMing} Time:{Time}";
+
+        }
+
 
 
         // GET: PF/Details/5
